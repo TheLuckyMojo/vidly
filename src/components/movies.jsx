@@ -7,9 +7,8 @@ class Movies extends Component {
   };
 
   handleDelete = (movie) => {
-    const index = this.state.movies.indexOf(movie);
-    this.state.movies.splice(index, 1);
-    this.setState({ movies: this.state.movies });
+    const movies = this.state.movies.filter((m) => m._id !== movie._id);
+    this.setState({ movies });
   };
 
   render() {
