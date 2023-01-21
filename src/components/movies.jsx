@@ -13,7 +13,7 @@ class Movies extends Component {
 
   render() {
     return (
-      <div>
+      <React.Fragment>
         <p>Showing {this.state.movies.length} movies in the database</p>
         <table>
           <tbody>
@@ -41,7 +41,7 @@ class Movies extends Component {
             ))}
           </tbody>
         </table>
-      </div>
+      </React.Fragment>
     );
   }
 }
