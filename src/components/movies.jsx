@@ -46,6 +46,8 @@ class Movies extends Component {
                 <td>{movie.dailyRentalRate}</td>
                 <td>
                   <Like
+                    // Why are we not getting any errors when using movie.liked
+                    // when there is no liked variable in the movie object
                     liked={movie.liked}
                     onClick={() => this.handleLike(movie)}
                   />
