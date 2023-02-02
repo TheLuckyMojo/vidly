@@ -1,14 +1,11 @@
 import React from "react";
 
-const ListGroup = () => {
+const ListGroup = (props) => {
   return (
     <div>
-      {this.props.listItems.map((item) => (
+      {props.listItems.map((item) => (
         <ul key={item._id} className='list-group'>
-          <li
-            className='page-link'
-            onClick={() => this.props.onItemChange(item)}
-          >
+          <li className='page-link' onClick={() => props.onItemChange(item)}>
             {item.name}
           </li>
         </ul>
