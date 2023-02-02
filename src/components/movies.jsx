@@ -54,55 +54,59 @@ class Movies extends Component {
     const movies = paginate(allMovies, currentPage, pageSize);
 
     return (
-      <div>
-        <p>Showing {allMovies.length} movies in the database</p>
-        <ListGroup
-          listItems={genres}
-          currentItem={currentItem}
-          onItemChange={this.handleListItemChange}
-        />
-        <table>
-          <tbody>
-            <tr>
-              <th>Title</th>
-              <th>Genre</th>
-              <th>Stock</th>
-              <th>Rate</th>
-              <th />
-              <th />
-            </tr>
-            {movies.map((movie) => (
-              <tr key={movie._id}>
-                <td>{movie.title}</td>
-                <td>{movie.genre.name}</td>
-                <td>{movie.numberInStock}</td>
-                <td>{movie.dailyRentalRate}</td>
-                <td>
-                  <Like
-                    // Why are we not getting any errors when using movie.liked
-                    // when there is no liked variable in the movie object
-                    liked={movie.liked}
-                    onClick={() => this.handleLike(movie)}
-                  />
-                </td>
-                <td>
-                  <button
-                    onClick={() => this.handleDelete(movie)}
-                    className='btn btn-danger btn-sm'
-                  >
-                    Delete
-                  </button>
-                </td>
+      <div className='row'>
+        <div className='col-2'>
+          <ListGroup
+            listItems={genres}
+            currentItem={currentItem}
+            onItemChange={this.handleListItemChange}
+          />
+        </div>
+        <div className='col'>
+          <p>Showing {allMovies.length} movies in the database</p>
+          <table>
+            <tbody>
+              <tr>
+                <th>Title</th>
+                <th>Genre</th>
+                <th>Stock</th>
+                <th>Rate</th>
+                <th />
+                <th />
               </tr>
-            ))}
-          </tbody>
-        </table>
-        <Pagination
-          itemsCount={count}
-          pageSize={pageSize}
-          currentPage={currentPage}
-          onPageChange={this.handlePageChange}
-        />
+              {movies.map((movie) => (
+                <tr key={movie._id}>
+                  <td>{movie.title}</td>
+                  <td>{movie.genre.name}</td>
+                  <td>{movie.numberInStock}</td>
+                  <td>{movie.dailyRentalRate}</td>
+                  <td>
+                    <Like
+                      // Why are we not getting any errors when using movie.liked
+                      // when there is no liked variable in the movie object
+                      liked={movie.liked}
+                      onClick={() => this.handleLike(movie)}
+                    />
+                  </td>
+                  <td>
+                    <button
+                      onClick={() => this.handleDelete(movie)}
+                      className='btn btn-danger btn-sm'
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <Pagination
+            itemsCount={count}
+            pageSize={pageSize}
+            currentPage={currentPage}
+            onPageChange={this.handlePageChange}
+          />
+        </div>
       </div>
     );
   }
