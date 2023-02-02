@@ -10,9 +10,9 @@ class Movies extends Component {
   state = {
     movies: [],
     genres: [],
+    pageSize: 4,
     currentPage: 1,
     currentItem: 1,
-    pageSize: 4,
   };
 
   componentDidMount() {
@@ -59,9 +59,11 @@ class Movies extends Component {
 
     return (
       <div className='row'>
-        <div className='col-2'>
+        <div className='col-3'>
           <ListGroup
             items={genres}
+            textProperty='name'
+            valueProperty='_id'
             currentItem={currentItem}
             onItemSelect={this.handleGenreSelect}
           />

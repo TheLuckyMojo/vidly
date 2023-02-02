@@ -1,16 +1,19 @@
 import React from "react";
 
 const ListGroup = (props) => {
+  const { items, textProperty, valueProperty } = props;
   return (
-    <div>
-      {props.items.map((item) => (
-        <ul key={item._id} className='list-group'>
-          <li className='page-link' onClick={() => props.onItemSelect(item)}>
-            {item.name}
-          </li>
-        </ul>
+    <ul className='list-group'>
+      {items.map((item) => (
+        <li
+          key={item[valueProperty]}
+          className='list-group-item'
+          onClick={() => props.onItemSelect(item)}
+        >
+          {item[textProperty]}
+        </li>
       ))}
-    </div>
+    </ul>
   );
 };
 
