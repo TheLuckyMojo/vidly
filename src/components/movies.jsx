@@ -37,7 +37,7 @@ class Movies extends Component {
     const movies = paginate(allMovies, currentPage, pageSize);
 
     return (
-      <React.Fragment>
+      <div>
         <p>Showing {this.state.movies.length} movies in the database</p>
         <table>
           <tbody>
@@ -76,12 +76,12 @@ class Movies extends Component {
           </tbody>
         </table>
         <Pagination
-          itemsCount='abc'
+          itemsCount={count}
           pageSize={pageSize}
           currentPage={currentPage}
           onPageChange={this.handlePageChange}
         />
-      </React.Fragment>
+      </div>
     );
   }
 }
