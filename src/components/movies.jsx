@@ -8,12 +8,16 @@ import ListGroup from "./common/listGroup";
 
 class Movies extends Component {
   state = {
-    movies: getMovies(),
-    genres: getGenres(),
+    movies: [],
+    genres: [],
     currentPage: 1,
     currentItem: 1,
     pageSize: 4,
   };
+
+  componentDidMount() {
+    this.setState({ movies: getMovies(), genres: getGenres() });
+  }
 
   handleDelete = (movie) => {
     const movies = this.state.movies.filter((m) => m._id !== movie._id);
@@ -32,9 +36,9 @@ class Movies extends Component {
     this.setState({ currentPage: page });
   };
 
-  handleListItemChange = (selectedItem) => {
+  handleGenreSelect = (genre) => {
     const specificMovies = this.state.movies.filter(
-      (movie) => movie.genre.name === selectedItem.name
+      (movie) => movie.genre.name === genre.name
     );
     this.setState({ movies: specificMovies });
   };
@@ -42,11 +46,11 @@ class Movies extends Component {
   render() {
     const { length: count } = this.state.movies;
     const {
+      genres,
       pageSize,
       currentPage,
-      movies: allMovies,
       currentItem,
-      genres,
+      movies: allMovies,
     } = this.state;
 
     if (count === 0) return <p>There are no movies in the database.</p>;
@@ -57,9 +61,9 @@ class Movies extends Component {
       <div className='row'>
         <div className='col-2'>
           <ListGroup
-            listItems={genres}
+            items={genres}
             currentItem={currentItem}
-            onItemChange={this.handleListItemChange}
+            onItemSelect={this.handleGenreSelect}
           />
         </div>
         <div className='col'>
