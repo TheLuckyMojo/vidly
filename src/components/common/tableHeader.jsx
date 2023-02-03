@@ -8,10 +8,8 @@ class TableHeader extends Component {
   raiseSort = (path) => {
     const sortColumn = { ...this.props.sortColumn };
     if (sortColumn.path === path) {
-      console.log("In the if statement");
       sortColumn.order = sortColumn.order === "asc" ? "desc" : "asc";
     } else {
-      console.log("In the else statement");
       sortColumn.path = path;
       sortColumn.order = "asc";
     }
