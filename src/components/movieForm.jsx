@@ -1,9 +1,8 @@
 import React from "react";
 import Joi from "joi-browser";
 import Form from "./common/form";
-import { getGenres } from "./../services/fakeGenreService";
-import { getMovie } from "../services/fakeMovieService";
-import { saveMovie } from "./../services/fakeMovieService";
+import { getMovie, saveMovie } from "../services/fakeMovieService";
+import { getGenres } from "../services/fakeGenreService";
 
 class MovieForm extends Form {
   state = {
@@ -17,14 +16,14 @@ class MovieForm extends Form {
     title: Joi.string().required().label("Title"),
     genreId: Joi.string().required().label("Genre"),
     numberInStock: Joi.number()
+      .required()
       .min(0)
       .max(100)
-      .required()
       .label("Number in Stock"),
     dailyRentalRate: Joi.number()
+      .required()
       .min(0)
       .max(10)
-      .required()
       .label("Daily Rental Rate"),
   };
 
@@ -64,8 +63,8 @@ class MovieForm extends Form {
         <form onSubmit={this.handleSubmit}>
           {this.renderInput("title", "Title")}
           {this.renderSelect("genreId", "Genre", this.state.genres)}
-          {this.renderInput("numberInStock", "Number in Stock")}
-          {this.renderInput("dailyRentalRate", "Daily Rental Rate")}
+          {this.renderInput("numberInStock", "Number in Stock", "number")}
+          {this.renderInput("dailyRentalRate", "Rate")}
           {this.renderButton("Save")}
         </form>
       </div>
