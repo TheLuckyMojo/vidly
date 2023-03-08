@@ -30,7 +30,7 @@ class MovieForm extends Form {
 
   componentDidMount() {
     const genres = getGenres();
-    this.state({ genres });
+    this.setState({ genres });
 
     const movieId = this.props.match.params.id;
     if (movieId === "new") return;
@@ -38,10 +38,10 @@ class MovieForm extends Form {
     const movie = getMovie(movieId);
     if (!movie) return this.props.history.replace("/not-found");
 
-    this.setState({ data: this.mapToViewMode(movie) });
+    this.setState({ data: this.mapToViewModel(movie) });
   }
 
-  mapToViewMode(movie) {
+  mapToViewModel(movie) {
     return {
       _id: movie._id,
       title: movie.title,
