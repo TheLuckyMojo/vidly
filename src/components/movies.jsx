@@ -7,6 +7,7 @@ import { paginate } from "../utils/paginate";
 import ListGroup from "./common/listGroup";
 import _ from "lodash";
 import { Link } from "react-router-dom";
+import Search from "./common/search";
 
 class Movies extends Component {
   state = {
@@ -45,6 +46,12 @@ class Movies extends Component {
 
   handleSort = (sortColumn) => {
     this.setState({ sortColumn });
+  };
+
+  handleSearch = (query) => {
+    const result = this.state.movies.filter((m) => m.title === movie.title);
+    this.setState({ movies });
+    console.log("Searching for " + query);
   };
 
   getPageData = () => {
@@ -94,6 +101,7 @@ class Movies extends Component {
             New Movie
           </Link>
           <p>Showing {totalCount} movies in the database</p>
+          <Search onSearch={this.handleSearch} style={{ marginBottom: 20 }} />
           <MoviesTable
             movies={movies}
             sortColumn={sortColumn}
